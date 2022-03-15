@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+{% import 'macros.html' as macro %}
+
+
+{% block content %}
+
+<!-- Content block -->
+<div class="container">
+    <h2><b>More</b></h2>
+    <div class="row">
+        {% if blogs %}
+
+        <div class="col-md-8">
+            <div class="body">
+                {{blogs.blog_content}}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2><b>Comments</b></h2>
+            <b>leave a comment</b> <br>
+            {% if current_user.is_authenticated %}
+            {{ wtf.quick_form(comment_form) }}
+            {%endif%} <br>
+            {% for comment in comments %}
+            <div class="comments">
+                {{comment.comment}} by {{comment.user}} <button class="btn btn-danger">delete Comment</button>
+            </div>
+            {% endfor %}
+        </div>
+        {%endif%}
+    </div>
+
+</div>
+<style>
+    .container {
+        background-image: url(/static/pictures/marble.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .body {
+        background-color: rgb(139, 204, 241);
+        line-height: 2;
+        padding: 2%;
+        margin: 5%;
+        font-size: 20px;
+        box-shadow: 5px 2px 5px 2px;
+
+    }
+    .comments{
+        background-color: rgb(245, 245, 252);
+        margin-top: 2%;
+        padding: 4%;
+    }
+    button{
+        float: right;
+    }
+</style>
+
+{% endblock %}
