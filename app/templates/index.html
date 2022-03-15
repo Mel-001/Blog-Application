@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+{% import 'bootstrap/wtf.html' as wtf%}
+{%block styles%} {{ super() }}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+{%endblock%}
+{%block content%}
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <h2><b>blogg</b></h2> <br>
+            <div class="col-md-4"> 
+                {% if quote %}
+                <div class="card">
+                    <div class="card-header">
+                        <h4><b> Quote of the day</b></h4>
+                    </div>
+                    <div class="card-body">
+                        {{quote.quote}}
+                    </div>
+                    <div class="card-footer">
+                        <b><i>-{{quote.author}}</i></b>
+                    </div>
+                </div>
+                {%endif%}
+                <div class="sub">
+                    <a href="/subscribe/ " style="text-decoration: none; ">
+                        <button class="btn btn-primary">subscribe</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+
+
+                {% for blog in blogs %}
+                <div class="content">
+                    <div class="cont-header">
+                        {{blog.blog_title}}
+                    </div>
+                    <div class="body">
+                        <i>{{blog.blog_content|truncate(600)}}</i>
+                    </div>
+                    <h4><b>This blog was posted on: {{blog.posted}}</b></h4>
+                    <div class="foot">
+                        <a href="/blog/{{blog.id}}">
+                            <button class="btn btn-primary">Read More</button>
+                        </a> 
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .container{
+        background-image: url('/static/pictures/marble.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+      
+
+    }
+    .cont-header{
+        background-color: rgb(116, 192, 236);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: 900;
+        font-size: 20px;
+        padding-left: 1%;
+
+    }
+    .content {
+        padding: 2%;
+        line-height: 2;
+        margin-top: 2%;
+        background-color: rgb(255,255,255);
+        border-radius: 2%;
+        box-shadow: 5px 2px 5px 2px;
+
+    }
+    .card{
+        line-height: 2;
+        margin: 2%;
+        padding: 2%;
+        background-color: #fff;
+    }
+</style>
+{% endblock %}
