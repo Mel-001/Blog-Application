@@ -6,7 +6,7 @@ from .. import db,photos
 from ..request import get_quotes
 from .forms import BlogForm, CommentForm,UpdateProfile,SubscribeForm
 from ..email import mail_message
-import markdown2 
+
 
 #Views
 @main.route('/', methods = ['GET','POST'])
