@@ -1,0 +1,47 @@
+{% extends 'base.html'%} {%import 'macros.html' as macro%}
+{% block content %}
+<div class="container">
+  <h3 style="text-align: center;"> <strong>{{user.username}}</strong> </h3>
+  <h4><b>joined on: {{date}}</b></h4>
+  <div class="row">
+    <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="thumbnail">
+      {% if user.profile_pic_path %}
+      <img src="{{url_for( 'static',filename=user.profile_pic_path)}} " alt="profile-pic " class="img-circle ">
+      {%else%}
+      <p> no set profile picture</p>
+      {% endif %}
+
+      {% if user == current_user %}
+      <form action="{{url_for('main.update_pic',usersname=user.username)}}" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="photo" class="form-control" required>
+        <input type="submit">
+      </form>
+      <a href="{{url_for('main.update_profile',usersname=user.username)}}">
+       
+      </a>
+      {% endif %}
+
+    </div>
+    <div class="bio">
+      <!--Displaying user bio-->
+      {% if user.bio %}
+      <p> {{user.bio}}</p>
+      {%else%}
+      <p> {{user.username| capitalize}} has no bio </p>
+      <button class="btn btn-primary">
+        Update Profile
+      </button>
+      {% endif %}
+    </div>
+  </div>
+  <col-md-4></col-md-3>
+  </div>
+  <style>
+    .thumbnail {
+      width: 100%;
+    }
+  </style>
+  {% endblock %}
