@@ -1,0 +1,21 @@
+{% extends 'base.html'%} 
+{% import "bootstrap/wtf.html" as wtf %} 
+{% block content %}
+
+<div>
+
+</div>
+<div class="container">
+    <div class="row">
+    
+        <div class="col">
+            <div style="width: 60%; height:50%">
+                <h2>Subscribe</h2>
+                <br> {{ wtf.quick_form(subscribe_form) }}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
