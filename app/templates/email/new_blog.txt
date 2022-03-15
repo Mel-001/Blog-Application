@@ -1,0 +1,6 @@
+Hello there!
+
+Checkout this new Post on blog  
+
+Title: {{new_blog.blog_title}}
+Post: {{new_blog.content|truncate(50)}}                  
