@@ -5,7 +5,7 @@ from . import mail
 import smtplib
 
 
-subject_pref = 'bloGg'
+subject_pref = 'blog'
 
 
 def mail_message(subject,template,to,**kwargs):
